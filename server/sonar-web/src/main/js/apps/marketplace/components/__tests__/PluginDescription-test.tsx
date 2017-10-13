@@ -19,7 +19,7 @@
  */
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import { click } from '../../../helpers/testUtils';
+import { click } from '../../../../helpers/testUtils';
 import PluginDescription from '../PluginDescription';
 
 it('should display the description and category', () => {

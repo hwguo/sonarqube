@@ -18,12 +18,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import Checkbox from '../../components/controls/Checkbox';
-import CheckIcon from '../../components/icons-components/CheckIcon';
+import Checkbox from '../../../components/controls/Checkbox';
+import CheckIcon from '../../../components/icons-components/CheckIcon';
 import PluginUpdateButton from './PluginUpdateButton';
-import { Plugin, installPlugin, updatePlugin, uninstallPlugin } from '../../api/plugins';
-import { isEditionPlugin, isPluginAvailable, isPluginInstalled } from './utils';
-import { translate } from '../../helpers/l10n';
+import { Plugin, installPlugin, updatePlugin, uninstallPlugin } from '../../../api/plugins';
+import { isEditionPlugin, isPluginAvailable, isPluginInstalled } from '../utils';
+import { translate } from '../../../helpers/l10n';
 
 interface Props {
   plugin: Plugin;

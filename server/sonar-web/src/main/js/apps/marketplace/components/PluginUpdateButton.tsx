@@ -18,8 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import { Update } from '../../api/plugins';
-import { translateWithParameters } from '../../helpers/l10n';
+import { Update } from '../../../api/plugins';
+import { translateWithParameters } from '../../../helpers/l10n';
 
 interface Props {
   disabled: boolean;

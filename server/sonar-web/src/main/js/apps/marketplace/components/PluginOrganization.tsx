@@ -18,33 +18,33 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import PluginUpdateItem from './PluginUpdateItem';
-import { Update } from '../../api/plugins';
-import { translate } from '../../helpers/l10n';
+import { FormattedMessage } from 'react-intl';
+import { translate } from '../../../helpers/l10n';
+import { Plugin } from '../../../api/plugins';
 
 interface Props {
-  updates?: Update[];
+  plugin: Plugin;
 }
 
-export default function PluginUpdates({ updates }: Props) {
-  if (!updates || updates.length <= 0) {
+export default function PluginOrganization({ plugin }: Props) {
+  if (!plugin.organizationName) {
     return null;
   }
   return (
-    <li className="spacer-top">
-      <strong>{translate('marketplace.updates')}:</strong>
-      <ul className="little-spacer-top">
-        {updates.map(
-          update =>
-            update.release ? (
-              <PluginUpdateItem
-                key={update.release.version}
-                release={update.release}
-                update={update}
-              />
-            ) : null
-        )}
-      </ul>
+    <li className="little-spacer-bottom">
+      <FormattedMessage
+        defaultMessage={translate('marketplace.developed_by_x')}
+        id="marketplace.developed_by_x"
+        values={{
+          organization: plugin.organizationUrl ? (
+            <a className="js-plugin-organization" href={plugin.organizationUrl} target="_blank">
+              {plugin.organizationName}
+            </a>
+          ) : (
+            <span className="js-plugin-organization">{plugin.organizationName}</span>
+          )
+        }}
+      />
     </li>
   );
 }

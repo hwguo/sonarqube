@@ -18,26 +18,33 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
-import { translate } from '../../helpers/l10n';
+import PluginUpdateItem from './PluginUpdateItem';
+import { Update } from '../../../api/plugins';
+import { translate } from '../../../helpers/l10n';
 
 interface Props {
-  license?: string;
+  updates?: Update[];
 }
 
-export default function PluginLicense({ license }: Props) {
-  if (!license) {
+export default function PluginUpdates({ updates }: Props) {
+  if (!updates || updates.length <= 0) {
     return null;
   }
   return (
-    <li className="little-spacer-bottom text-limited" title={license}>
-      <FormattedMessage
-        defaultMessage={translate('marketplace.licensed_under_x')}
-        id="marketplace.licensed_under_x"
-        values={{
-          license: <span className="js-plugin-license">{license}</span>
-        }}
-      />
+    <li className="spacer-top">
+      <strong>{translate('marketplace.updates')}:</strong>
+      <ul className="little-spacer-top">
+        {updates.map(
+          update =>
+            update.release ? (
+              <PluginUpdateItem
+                key={update.release.version}
+                release={update.release}
+                update={update}
+              />
+            ) : null
+        )}
+      </ul>
     </li>
   );
 }
