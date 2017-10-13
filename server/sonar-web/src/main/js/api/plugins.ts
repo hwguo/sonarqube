@@ -86,7 +86,7 @@ function getLastUpdates(updates: undefined | Update[]): Update[] {
     return [];
   }
   const lastUpdate = [
-    'INCOMPATIBLE',
+    'COMPATIBLE',
     'REQUIRES_SYSTEM_UPGRADE',
     'DEPS_REQUIRE_SYSTEM_UPGRADE'
   ].map(status => {
