@@ -55,7 +55,7 @@ public class ApplyLicenseActionTest {
   public UserSessionRule userSessionRule = UserSessionRule.standalone();
 
   private MutableEditionManagementState mutableEditionManagementState = mock(MutableEditionManagementState.class);
-  private ApplyLicenseAction underTest = new ApplyLicenseAction(userSessionRule, mutableEditionManagementState);
+  private ApplyLicenseAction underTest = new ApplyLicenseAction(userSessionRule, mutableEditionManagementState, licenseCommit);
   private WsActionTester actionTester = new WsActionTester(underTest);
 
   @Test
