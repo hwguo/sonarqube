@@ -22,6 +22,7 @@ import * as PropTypes from 'prop-types';
 import { sortBy, uniqBy } from 'lodash';
 import Helmet from 'react-helmet';
 import Header from './Header';
+import EditionBoxes from './EditionBoxes';
 import Footer from './Footer';
 import PendingActions from './PendingActions';
 import PluginsList from './PluginsList';
@@ -109,7 +110,11 @@ export default class App extends React.PureComponent<Props, State> {
           });
         }
       },
-      () => {}
+      () => {
+        if (this.mounted) {
+          this.setState({ loading: false });
+        }
+      }
     );
   };
 
@@ -121,7 +126,11 @@ export default class App extends React.PureComponent<Props, State> {
           this.setState({ loading: false, plugins });
         }
       },
-      () => {}
+      () => {
+        if (this.mounted) {
+          this.setState({ loading: false });
+        }
+      }
     );
   };
 
@@ -154,6 +163,7 @@ export default class App extends React.PureComponent<Props, State> {
       <div className="page page-limited" id="marketplace-page">
         <Helmet title={translate('marketplace.page')} />
         <Header />
+        <EditionBoxes updateCenterActive={this.props.updateCenterActive} />
         <PendingActions refreshPending={this.fetchPendingPlugins} pending={pending} />
         <Search
           query={query}

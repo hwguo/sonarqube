@@ -17,13 +17,30 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { connect } from 'react-redux';
-import App from './App';
-import { getGlobalSettingValue } from '../../store/rootReducer';
-import './style.css';
+import * as React from 'react';
+import { Edition } from '../../../api/editions';
+import { translate } from '../../../helpers/l10n';
 
-const mapStateToProps = (state: any) => ({
-  updateCenterActive: (getGlobalSettingValue(state, 'sonar.updatecenter.activate') || {}).value
-});
+export interface Props {
+  edition: Edition;
+}
 
-export default connect(mapStateToProps)(App as any);
+export default class EditionBox extends React.PureComponent<Props> {
+  render() {
+    const { edition } = this.props;
+    return (
+      <div className="boxed-group boxed-group-inner marketplace-edition">
+        <div>
+          <h3 className="spacer-bottom">{edition.name}</h3>
+          <p>{edition.desc}</p>
+        </div>
+        <div className="marketplace-edition-action spacer-top">
+          <a href={edition.more_link} target="_blank">
+            {translate('marketplace.learn_more')}
+          </a>
+          <button>{translate('marketplace.install')}</button>
+        </div>
+      </div>
+    );
+  }
+}

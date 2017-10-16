@@ -17,13 +17,26 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { connect } from 'react-redux';
-import App from './App';
-import { getGlobalSettingValue } from '../../store/rootReducer';
-import './style.css';
+import { checkStatus, corsRequest, parseJSON } from '../helpers/request';
 
-const mapStateToProps = (state: any) => ({
-  updateCenterActive: (getGlobalSettingValue(state, 'sonar.updatecenter.activate') || {}).value
-});
+export interface Edition {
+  name: string;
+  desc: string;
+  more_link: string;
+  request_license_link: string;
+  download_link: string;
+}
 
-export default connect(mapStateToProps)(App as any);
+export interface Editions {
+  [key: string]: Edition;
+}
+
+export function getEditionsList(): Promise<Editions> {
+  // TODO Replace with real url
+  const url =
+    'https://gist.githubusercontent.com/gregaubert/e34535494f8a94bec7cbc4d750ae7d06/raw/ba8670a28d4bc6fbac18f92e450ec42029cc5dcb/editions.json';
+  return corsRequest(url)
+    .submit()
+    .then(checkStatus)
+    .then(parseJSON);
+}
