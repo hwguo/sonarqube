@@ -17,7 +17,8 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { checkStatus, corsRequest, parseJSON } from '../helpers/request';
+import { checkStatus, corsRequest, getJSON, parseJSON } from '../helpers/request';
+import throwGlobalError from '../app/utils/throwGlobalError';
 
 export interface Edition {
   name: string;
@@ -29,6 +30,21 @@ export interface Edition {
 
 export interface Editions {
   [key: string]: Edition;
+}
+
+export interface EditionStatus {
+  currentEditionKey?: string;
+  nextEditionKey?: string;
+  installationStatus:
+    | 'NONE'
+    | 'AUTOMATIC_IN_PROGRESS'
+    | 'MANUAL_IN_PROGRESS'
+    | 'AUTOMATIC_READY'
+    | 'AUTOMATIC_FAILURE';
+}
+
+export function getEditionStatus(): Promise<EditionStatus> {
+  return getJSON('/api/editions/status').catch(throwGlobalError);
 }
 
 export function getEditionsList(): Promise<Editions> {
