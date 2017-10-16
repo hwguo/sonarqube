@@ -71,7 +71,11 @@ export default class SimilarIssuesPopup extends React.PureComponent {
           <h6>{translate('issue.filter_similar_issues')}</h6>
         </header>
 
-        <SelectList currentItem={items[0]} items={items} onSelect={this.handleSelect}>
+        <SelectList
+          className="issues-similar-issues-menu"
+          currentItem={items[0]}
+          items={items}
+          onSelect={this.handleSelect}>
           <SelectListItem item="type">
             <IssueTypeIcon className="little-spacer-right" query={issue.type} />
             {translate('issue.type', issue.type)}

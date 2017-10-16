@@ -21,11 +21,13 @@
 import React from 'react';
 import key from 'keymaster';
 import { uniqueId } from 'lodash';
+import classNames from 'classnames';
 import SelectListItem from './SelectListItem';
 
 /*::
 type Props = {
   children?: SelectListItem,
+  className?: string,
   items: Array<string>,
   currentItem: string,
   onSelect: string => void
@@ -135,7 +137,7 @@ export default class SelectList extends React.PureComponent {
     const { children } = this.props;
     const hasChildren = React.Children.count(children) > 0;
     return (
-      <ul className="menu">
+      <ul className={classNames('menu', this.props.className)}>
         {hasChildren &&
           React.Children.map(
             children,
