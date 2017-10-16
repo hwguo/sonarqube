@@ -46,7 +46,7 @@ export default function ComponentNavBranchesMenuItem({ branch, ...props }: Props
           active: props.selected
         })}
         to={getProjectBranchUrl(props.component.key, branch)}>
-        <div className="navbar-context-meta-branch-menu-item-name">
+        <div className="navbar-context-meta-branch-menu-item-name text-ellipsis">
           <BranchIcon
             branch={branch}
             className={classNames('little-spacer-right', {

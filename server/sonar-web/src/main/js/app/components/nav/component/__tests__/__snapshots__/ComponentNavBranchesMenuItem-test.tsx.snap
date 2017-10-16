@@ -18,7 +18,7 @@ exports[`renders main branch 1`] = `
     }
   >
     <div
-      className="navbar-context-meta-branch-menu-item-name"
+      className="navbar-context-meta-branch-menu-item-name text-ellipsis"
     >
       <BranchIcon
         branch={
@@ -73,7 +73,7 @@ exports[`renders short-living branch 1`] = `
     }
   >
     <div
-      className="navbar-context-meta-branch-menu-item-name"
+      className="navbar-context-meta-branch-menu-item-name text-ellipsis"
     >
       <BranchIcon
         branch={
@@ -137,7 +137,7 @@ exports[`renders short-living orhpan branch 1`] = `
     }
   >
     <div
-      className="navbar-context-meta-branch-menu-item-name"
+      className="navbar-context-meta-branch-menu-item-name text-ellipsis"
     >
       <BranchIcon
         branch={
