@@ -18,18 +18,37 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import { Edition } from '../../../api/editions';
+import CheckIcon from '../../../components/icons-components/CheckIcon';
+import { Edition, EditionStatus } from '../../../api/editions';
 import { translate } from '../../../helpers/l10n';
 
 export interface Props {
   edition: Edition;
+  editionKey: string;
+  editionStatus?: EditionStatus;
 }
 
 export default class EditionBox extends React.PureComponent<Props> {
   render() {
-    const { edition } = this.props;
+    const { edition, editionKey, editionStatus } = this.props;
+    const isInstalled = editionStatus && editionStatus.currentEditionKey === editionKey;
+    const isInstalling = editionStatus && editionStatus.nextEditionKey === editionKey;
+    const installInProgress =
+      editionStatus && editionStatus.installationStatus === 'AUTOMATIC_IN_PROGRESS';
     return (
       <div className="boxed-group boxed-group-inner marketplace-edition">
+        {isInstalled &&
+        !isInstalling && (
+          <span className="marketplace-edition-badge badge badge-normal-size">
+            <CheckIcon size={14} className="little-spacer-right text-text-top" />
+            {translate('marketplace.installed')}
+          </span>
+        )}
+        {isInstalling && (
+          <span className="marketplace-edition-badge badge badge-normal-size">
+            {translate('marketplace.installing')}
+          </span>
+        )}
         <div>
           <h3 className="spacer-bottom">{edition.name}</h3>
           <p>{edition.desc}</p>
@@ -38,7 +57,14 @@ export default class EditionBox extends React.PureComponent<Props> {
           <a href={edition.more_link} target="_blank">
             {translate('marketplace.learn_more')}
           </a>
-          <button>{translate('marketplace.install')}</button>
+          {!isInstalled && (
+            <button disabled={installInProgress}>{translate('marketplace.install')}</button>
+          )}
+          {isInstalled && (
+            <button className="button-red" disabled={installInProgress}>
+              {translate('marketplace.uninstall')}
+            </button>
+          )}
         </div>
       </div>
     );

@@ -21,10 +21,11 @@ import * as React from 'react';
 import { map } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 import EditionBox from './components/EditionBox';
-import { Editions, getEditionsList } from '../../api/editions';
+import { Editions, EditionStatus, getEditionsList } from '../../api/editions';
 import { translate } from '../../helpers/l10n';
 
 export interface Props {
+  editionStatus?: EditionStatus;
   updateCenterActive: boolean;
 }
 
@@ -89,7 +90,14 @@ export default class EditionBoxes extends React.PureComponent<Props, State> {
             />
           </span>
         ) : (
-          map(editions, edition => <EditionBox key={edition.name} edition={edition} />)
+          map(editions, (edition, key) => (
+            <EditionBox
+              edition={edition}
+              editionKey={key}
+              editionStatus={this.props.editionStatus}
+              key={key}
+            />
+          ))
         )}
       </div>
     );

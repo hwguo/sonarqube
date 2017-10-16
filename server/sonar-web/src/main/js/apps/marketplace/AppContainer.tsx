@@ -19,10 +19,11 @@
  */
 import { connect } from 'react-redux';
 import App from './App';
-import { getGlobalSettingValue } from '../../store/rootReducer';
+import { getAppState, getGlobalSettingValue } from '../../store/rootReducer';
 import './style.css';
 
 const mapStateToProps = (state: any) => ({
+  editionStatus: getAppState(state).editionStatus,
   updateCenterActive: (getGlobalSettingValue(state, 'sonar.updatecenter.activate') || {}).value
 });
 

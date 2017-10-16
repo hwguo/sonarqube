@@ -35,11 +35,13 @@ import {
   Plugin,
   PluginPending
 } from '../../api/plugins';
+import { EditionStatus } from '../../api/editions';
 import { RawQuery } from '../../helpers/query';
 import { translate } from '../../helpers/l10n';
 import { filterPlugins, parseQuery, Query, serializeQuery } from './utils';
 
 export interface Props {
+  editionStatus?: EditionStatus;
   location: { pathname: string; query: RawQuery };
   updateCenterActive: boolean;
 }
@@ -163,7 +165,10 @@ export default class App extends React.PureComponent<Props, State> {
       <div className="page page-limited" id="marketplace-page">
         <Helmet title={translate('marketplace.page')} />
         <Header />
-        <EditionBoxes updateCenterActive={this.props.updateCenterActive} />
+        <EditionBoxes
+          editionStatus={this.props.editionStatus}
+          updateCenterActive={this.props.updateCenterActive}
+        />
         <PendingActions refreshPending={this.fetchPendingPlugins} pending={pending} />
         <Search
           query={query}
