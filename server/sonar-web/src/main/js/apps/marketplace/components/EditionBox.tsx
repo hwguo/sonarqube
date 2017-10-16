@@ -19,7 +19,7 @@
  */
 import * as React from 'react';
 import CheckIcon from '../../../components/icons-components/CheckIcon';
-import { Edition, EditionStatus } from '../../../api/editions';
+import { Edition, EditionStatus } from '../../../api/marketplace';
 import { translate } from '../../../helpers/l10n';
 
 export interface Props {

@@ -20,13 +20,13 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 import EditionBoxes from '../EditionBoxes';
-import { EditionStatus } from '../../../api/editions';
+import { EditionStatus } from '../../../api/marketplace';
 
-const DEFAULT_STATUS = {
+const DEFAULT_STATUS: EditionStatus = {
   currentEditionKey: 'foo',
   nextEditionKey: '',
   installationStatus: 'NONE'
-} as EditionStatus;
+};
 
 it('should display the edition boxes', () => {
   const wrapper = getWrapper();

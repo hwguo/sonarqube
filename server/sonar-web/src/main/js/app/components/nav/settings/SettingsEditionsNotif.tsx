@@ -19,7 +19,7 @@
  */
 import * as React from 'react';
 import NavBarNotif from '../../../../components/nav/NavBarNotif';
-import { EditionStatus } from '../../../../api/editions';
+import { EditionStatus } from '../../../../api/marketplace';
 import { translate } from '../../../../helpers/l10n';
 
 interface Props {

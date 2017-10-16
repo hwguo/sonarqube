@@ -24,7 +24,7 @@ import { connect } from 'react-redux';
 import SettingsNav from './nav/settings/SettingsNav';
 import { getAppState } from '../../store/rootReducer';
 import { getSettingsNavigation } from '../../api/nav';
-import { EditionStatus, getEditionStatus } from '../../api/editions';
+import { EditionStatus, getEditionStatus } from '../../api/marketplace';
 import { setAdminPages, setEditionStatus } from '../../store/appState/duck';
 import { translate } from '../../helpers/l10n';
 import { Extension } from '../types';

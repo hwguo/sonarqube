@@ -23,7 +23,7 @@ import { IndexLink, Link } from 'react-router';
 import ContextNavBar from '../../../../components/nav/ContextNavBar';
 import SettingsEditionsNotif from './SettingsEditionsNotif';
 import NavBarTabs from '../../../../components/nav/NavBarTabs';
-import { EditionStatus } from '../../../../api/editions';
+import { EditionStatus } from '../../../../api/marketplace';
 import { Extension } from '../../../types';
 import { translate } from '../../../../helpers/l10n';
 

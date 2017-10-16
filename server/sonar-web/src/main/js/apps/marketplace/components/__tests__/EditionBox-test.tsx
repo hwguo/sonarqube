@@ -19,22 +19,22 @@
  */
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import { Edition, EditionStatus } from '../../../../api/editions';
+import { Edition, EditionStatus } from '../../../../api/marketplace';
 import EditionBox from '../EditionBox';
 
-const DEFAULT_STATUS = {
+const DEFAULT_STATUS: EditionStatus = {
   currentEditionKey: '',
   nextEditionKey: '',
   installationStatus: 'NONE'
-} as EditionStatus;
+};
 
-const DEFAULT_EDITION = {
+const DEFAULT_EDITION: Edition = {
   name: 'Foo',
   desc: 'Foo desc',
   download_link: 'download_url',
   more_link: 'more_url',
   request_license_link: 'license_url'
-} as Edition;
+};
 
 it('should display the edition', () => {
   expect(getWrapper()).toMatchSnapshot();

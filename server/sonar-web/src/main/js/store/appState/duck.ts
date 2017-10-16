@@ -19,7 +19,7 @@
  */
 
 import { Extension } from '../../app/types';
-import { EditionStatus } from '../../api/editions';
+import { EditionStatus } from '../../api/marketplace';
 
 interface AppState {
   adminPages?: Extension[];

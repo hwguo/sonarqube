@@ -18,10 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import { map } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 import EditionBox from './components/EditionBox';
-import { Editions, EditionStatus, getEditionsList } from '../../api/editions';
+import { Editions, EditionStatus, getEditionsList } from '../../api/marketplace';
 import { translate } from '../../helpers/l10n';
 
 export interface Props {
@@ -90,9 +89,9 @@ export default class EditionBoxes extends React.PureComponent<Props, State> {
             />
           </span>
         ) : (
-          map(editions, (edition, key) => (
+          Object.keys(editions).map(key => (
             <EditionBox
-              edition={edition}
+              edition={editions[key]}
               editionKey={key}
               editionStatus={this.props.editionStatus}
               key={key}

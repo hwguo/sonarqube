@@ -35,7 +35,7 @@ import {
   Plugin,
   PluginPending
 } from '../../api/plugins';
-import { EditionStatus } from '../../api/editions';
+import { EditionStatus } from '../../api/marketplace';
 import { RawQuery } from '../../helpers/query';
 import { translate } from '../../helpers/l10n';
 import { filterPlugins, parseQuery, Query, serializeQuery } from './utils';
